@@ -40,7 +40,9 @@ class TourPackageController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('tour-packages', 'public');
+            $filename = time() . '-' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('tour-packages'), $filename);
+            $validated['image'] = 'tour-packages/' . $filename;
         } elseif ($request->filled('image_url')) {
             $validated['image'] = $request->image_url;
         }
@@ -74,9 +76,15 @@ class TourPackageController extends Controller
 
         if ($request->hasFile('image')) {
             if ($tourPackage->image && str_starts_with($tourPackage->image, 'tour-packages/')) {
-                Storage::disk('public')->delete($tourPackage->image);
+                $oldPath = public_path($tourPackage->image);
+                if (file_exists($oldPath)) {
+                    @unlink($oldPath);
+                }
             }
-            $validated['image'] = $request->file('image')->store('tour-packages', 'public');
+
+            $filename = time() . '-' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('tour-packages'), $filename);
+            $validated['image'] = 'tour-packages/' . $filename;
         } elseif ($request->filled('image_url')) {
             $validated['image'] = $request->image_url;
         }
@@ -92,7 +100,10 @@ class TourPackageController extends Controller
     public function destroy(TourPackage $tourPackage)
     {
         if ($tourPackage->image && str_starts_with($tourPackage->image, 'tour-packages/')) {
-            Storage::disk('public')->delete($tourPackage->image);
+            $path = public_path($tourPackage->image);
+            if (file_exists($path)) {
+                @unlink($path);
+            }
         }
         $tourPackage->delete();
         return redirect()->route('admin.tour-packages.index')->with('success', 'Paket wisata berhasil dihapus.');

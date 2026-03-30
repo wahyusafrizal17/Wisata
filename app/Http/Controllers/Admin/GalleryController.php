@@ -29,7 +29,9 @@ class GalleryController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('galleries', 'public');
+            $filename = time() . '-' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('galleries'), $filename);
+            $validated['image'] = 'galleries/' . $filename;
         } else {
             $validated['image'] = $request->image_url;
         }
@@ -54,9 +56,15 @@ class GalleryController extends Controller
 
         if ($request->hasFile('image')) {
             if ($gallery->image && str_starts_with($gallery->image, 'galleries/')) {
-                Storage::disk('public')->delete($gallery->image);
+                $oldPath = public_path($gallery->image);
+                if (file_exists($oldPath)) {
+                    @unlink($oldPath);
+                }
             }
-            $validated['image'] = $request->file('image')->store('galleries', 'public');
+
+            $filename = time() . '-' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('galleries'), $filename);
+            $validated['image'] = 'galleries/' . $filename;
         } elseif ($request->filled('image_url')) {
             $validated['image'] = $request->image_url;
         }
@@ -69,7 +77,10 @@ class GalleryController extends Controller
     public function destroy(Gallery $gallery)
     {
         if ($gallery->image && str_starts_with($gallery->image, 'galleries/')) {
-            Storage::disk('public')->delete($gallery->image);
+            $path = public_path($gallery->image);
+            if (file_exists($path)) {
+                @unlink($path);
+            }
         }
         $gallery->delete();
         return redirect()->route('admin.galleries.index')->with('success', 'Galeri berhasil dihapus.');

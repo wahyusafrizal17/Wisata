@@ -18,6 +18,6 @@ if (!function_exists('image_url')) {
         if (str_starts_with($path, 'http')) {
             return $path;
         }
-        return asset('storage/' . $path);
+        return asset($path);
     }
 }

@@ -31,7 +31,9 @@ class CarController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('cars', 'public');
+            $filename = time() . '-' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('cars'), $filename);
+            $validated['image'] = 'cars/' . $filename;
         } elseif ($request->filled('image_url')) {
             $validated['image'] = $request->image_url;
         }
@@ -57,9 +59,15 @@ class CarController extends Controller
 
         if ($request->hasFile('image')) {
             if ($car->image && str_starts_with($car->image, 'cars/')) {
-                Storage::disk('public')->delete($car->image);
+                $oldPath = public_path($car->image);
+                if (file_exists($oldPath)) {
+                    @unlink($oldPath);
+                }
             }
-            $validated['image'] = $request->file('image')->store('cars', 'public');
+
+            $filename = time() . '-' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('cars'), $filename);
+            $validated['image'] = 'cars/' . $filename;
         } elseif ($request->filled('image_url')) {
             $validated['image'] = $request->image_url;
         }
@@ -71,7 +79,10 @@ class CarController extends Controller
     public function destroy(Car $car)
     {
         if ($car->image && str_starts_with($car->image, 'cars/')) {
-            Storage::disk('public')->delete($car->image);
+            $path = public_path($car->image);
+            if (file_exists($path)) {
+                @unlink($path);
+            }
         }
         $car->delete();
         return redirect()->route('admin.cars.index')->with('success', 'Mobil berhasil dihapus.');

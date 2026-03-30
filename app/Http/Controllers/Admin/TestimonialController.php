@@ -31,7 +31,9 @@ class TestimonialController extends Controller
         ]);
 
         if ($request->hasFile('photo')) {
-            $validated['photo'] = $request->file('photo')->store('testimonials', 'public');
+            $filename = time() . '-' . $request->file('photo')->getClientOriginalName();
+            $request->file('photo')->move(public_path('testimonials'), $filename);
+            $validated['photo'] = 'testimonials/' . $filename;
         } elseif ($request->filled('photo_url')) {
             $validated['photo'] = $request->photo_url;
         }
@@ -57,9 +59,15 @@ class TestimonialController extends Controller
 
         if ($request->hasFile('photo')) {
             if ($testimonial->photo && str_starts_with($testimonial->photo, 'testimonials/')) {
-                Storage::disk('public')->delete($testimonial->photo);
+                $oldPath = public_path($testimonial->photo);
+                if (file_exists($oldPath)) {
+                    @unlink($oldPath);
+                }
             }
-            $validated['photo'] = $request->file('photo')->store('testimonials', 'public');
+
+            $filename = time() . '-' . $request->file('photo')->getClientOriginalName();
+            $request->file('photo')->move(public_path('testimonials'), $filename);
+            $validated['photo'] = 'testimonials/' . $filename;
         } elseif ($request->filled('photo_url')) {
             $validated['photo'] = $request->photo_url;
         }
@@ -71,7 +79,10 @@ class TestimonialController extends Controller
     public function destroy(Testimonial $testimonial)
     {
         if ($testimonial->photo && str_starts_with($testimonial->photo, 'testimonials/')) {
-            Storage::disk('public')->delete($testimonial->photo);
+            $path = public_path($testimonial->photo);
+            if (file_exists($path)) {
+                @unlink($path);
+            }
         }
         $testimonial->delete();
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimoni berhasil dihapus.');

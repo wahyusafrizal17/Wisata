@@ -34,7 +34,9 @@ class BannerController extends Controller
         $validated['is_active'] = $request->boolean('is_active');
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('banners', 'public');
+            $filename = time() . '-' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('banners'), $filename);
+            $validated['image'] = 'banners/' . $filename;
         } elseif ($request->filled('image_url')) {
             $validated['image'] = $request->image_url;
         }
@@ -63,9 +65,15 @@ class BannerController extends Controller
 
         if ($request->hasFile('image')) {
             if ($banner->image && str_starts_with($banner->image, 'banners/')) {
-                Storage::disk('public')->delete($banner->image);
+                $oldPath = public_path($banner->image);
+                if (file_exists($oldPath)) {
+                    @unlink($oldPath);
+                }
             }
-            $validated['image'] = $request->file('image')->store('banners', 'public');
+
+            $filename = time() . '-' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('banners'), $filename);
+            $validated['image'] = 'banners/' . $filename;
         } elseif ($request->filled('image_url')) {
             $validated['image'] = $request->image_url;
         }
@@ -77,7 +85,10 @@ class BannerController extends Controller
     public function destroy(Banner $banner)
     {
         if ($banner->image && str_starts_with($banner->image, 'banners/')) {
-            Storage::disk('public')->delete($banner->image);
+            $path = public_path($banner->image);
+            if (file_exists($path)) {
+                @unlink($path);
+            }
         }
         $banner->delete();
         return redirect()->route('admin.banners.index')->with('success', 'Banner berhasil dihapus.');

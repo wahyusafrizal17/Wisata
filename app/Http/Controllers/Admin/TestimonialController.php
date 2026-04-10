@@ -25,7 +25,7 @@ class TestimonialController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'message' => 'required|string',
-            'photo' => 'nullable|image|max:2048',
+            'photo' => 'nullable|image|max:10240',
             'photo_url' => 'nullable|url',
             'order' => 'nullable|integer',
         ]);
@@ -52,7 +52,7 @@ class TestimonialController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'message' => 'required|string',
-            'photo' => 'nullable|image|max:2048',
+            'photo' => 'nullable|image|max:10240',
             'photo_url' => 'nullable|url',
             'order' => 'nullable|integer',
         ]);

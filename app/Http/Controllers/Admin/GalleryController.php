@@ -24,7 +24,7 @@ class GalleryController extends Controller
     {
         $validated = $request->validate([
             'title' => 'nullable|string|max:255',
-            'image' => 'required_without:image_url|nullable|image|max:2048',
+            'image' => 'required_without:image_url|nullable|image|max:10240',
             'image_url' => 'required_without:image|nullable|url',
         ]);
 
@@ -50,7 +50,7 @@ class GalleryController extends Controller
     {
         $validated = $request->validate([
             'title' => 'nullable|string|max:255',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:10240',
             'image_url' => 'nullable|url',
         ]);
 

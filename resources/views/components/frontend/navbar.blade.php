@@ -3,19 +3,26 @@
         <div class="flex justify-between h-16 lg:h-20">
             <div class="flex items-center">
                 <a href="{{ route('home') }}" class="flex items-center gap-2">
-                    <span class="text-xl font-bold tracking-tight text-slate-900">SMJ <span class="text-emerald-600">Rent</span></span>
+                    <img
+                        src="{{ asset('logo.png') }}"
+                        alt="SMJ Rent"
+                        class="h-8 w-auto lg:h-9"
+                        loading="eager"
+                        decoding="async"
+                        style="width: 80px;height: 80px;"
+                    >
                 </a>
             </div>
 
             <div class="flex items-center gap-4">
                 <div class="hidden lg:flex lg:gap-8">
-                    <a href="{{ route('home') }}" class="text-slate-600 hover:text-emerald-600 transition-colors font-medium {{ request()->routeIs('home') ? 'text-emerald-600' : '' }}">Home</a>
-                    <a href="{{ route('home') }}#about" class="text-slate-600 hover:text-emerald-600 transition-colors font-medium">Tentang</a>
-                    <a href="{{ route('cars.index') }}" class="text-slate-600 hover:text-emerald-600 transition-colors font-medium {{ request()->routeIs('cars.*') ? 'text-emerald-600' : '' }}">Pricelist</a>
-                    <a href="{{ route('tour-packages.index') }}" class="text-slate-600 hover:text-emerald-600 transition-colors font-medium {{ request()->routeIs('tour-packages.*') ? 'text-emerald-600' : '' }}">Paket Wisata</a>
-                    <a href="{{ route('drop-off.index') }}" class="text-slate-600 hover:text-emerald-600 transition-colors font-medium {{ request()->routeIs('drop-off.*') ? 'text-emerald-600' : '' }}">Drop Off Bandara</a>
-                    <a href="{{ route('gallery.index') }}" class="text-slate-600 hover:text-emerald-600 transition-colors font-medium {{ request()->routeIs('gallery.*') ? 'text-emerald-600' : '' }}">Galeri</a>
-                    <a href="{{ route('contact.index') }}" class="text-slate-600 hover:text-emerald-600 transition-colors font-medium {{ request()->routeIs('contact.*') ? 'text-emerald-600' : '' }}">Kontak</a>
+                    <a href="{{ route('home') }}" class="text-slate-600 hover:text-brand-600 transition-colors font-medium {{ request()->routeIs('home') ? 'text-brand-600' : '' }}">Home</a>
+                    <a href="{{ url('/profil') }}" class="text-slate-600 hover:text-brand-600 transition-colors font-medium">Profil</a>
+                    <a href="{{ route('cars.index') }}" class="text-slate-600 hover:text-brand-600 transition-colors font-medium {{ request()->routeIs('cars.*') ? 'text-brand-600' : '' }}">Pricelist</a>
+                    <a href="{{ route('tour-packages.index') }}" class="text-slate-600 hover:text-brand-600 transition-colors font-medium {{ request()->routeIs('tour-packages.*') ? 'text-brand-600' : '' }}">Paket Wisata</a>
+                    <a href="{{ route('drop-off.index') }}" class="text-slate-600 hover:text-brand-600 transition-colors font-medium {{ request()->routeIs('drop-off.*') ? 'text-brand-600' : '' }}">Drop Off Bandara</a>
+                    <a href="{{ route('gallery.index') }}" class="text-slate-600 hover:text-brand-600 transition-colors font-medium {{ request()->routeIs('gallery.*') ? 'text-brand-600' : '' }}">Dokumentasi</a>
+                    <a href="{{ route('contact.index') }}" class="text-slate-600 hover:text-brand-600 transition-colors font-medium {{ request()->routeIs('contact.*') ? 'text-brand-600' : '' }}">Kontak</a>
                 </div>
 
                 <button @click="open = !open" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
@@ -29,11 +36,11 @@
     <div x-show="open" x-transition class="lg:hidden border-t border-slate-200 bg-white">
         <div class="px-4 py-4 space-y-2">
             <a href="{{ route('home') }}" class="block py-2 text-slate-600 font-medium">Home</a>
-            <a href="{{ route('home') }}#about" class="block py-2 text-slate-600 font-medium">Tentang</a>
+            <a href="{{ url('/profil') }}" class="block py-2 text-slate-600 font-medium">Profil</a>
             <a href="{{ route('cars.index') }}" class="block py-2 text-slate-600 font-medium">Pricelist</a>
             <a href="{{ route('tour-packages.index') }}" class="block py-2 text-slate-600 font-medium">Paket Wisata</a>
             <a href="{{ route('drop-off.index') }}" class="block py-2 text-slate-600 font-medium">Drop Off Bandara</a>
-            <a href="{{ route('gallery.index') }}" class="block py-2 text-slate-600 font-medium">Galeri</a>
+            <a href="{{ route('gallery.index') }}" class="block py-2 text-slate-600 font-medium">Dokumentasi</a>
             <a href="{{ route('contact.index') }}" class="block py-2 text-slate-600 font-medium">Kontak</a>
         </div>
     </div>

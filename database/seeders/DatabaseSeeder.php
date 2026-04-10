@@ -18,10 +18,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminUserSeeder::class,
             BannerSeeder::class,
+            SiteProfileSeeder::class,
+            SiteDocumentationSeeder::class,
+            SiteSettingSeeder::class,
             CarSeeder::class,
             TourPackageSeeder::class,
             GallerySeeder::class,
             TestimonialSeeder::class,
+            DropOffItemSeeder::class,
         ]);
     }
 }

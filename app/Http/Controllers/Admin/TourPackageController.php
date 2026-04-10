@@ -32,7 +32,7 @@ class TourPackageController extends Controller
             'description' => 'nullable|string',
             'itinerary' => 'nullable|string',
             'facilities' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:10240',
         ]);
 
         if (empty($validated['slug'])) {
@@ -71,7 +71,7 @@ class TourPackageController extends Controller
             'description' => 'nullable|string',
             'itinerary' => 'nullable|string',
             'facilities' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:10240',
         ]);
 
         if ($request->hasFile('image')) {

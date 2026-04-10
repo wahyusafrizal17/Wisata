@@ -13,8 +13,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased text-gray-900">
-        <div class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-600 via-red-700 to-red-900 px-4 py-10 sm:px-6">
-            {{-- Dekorasi latar: gelombang & bokeh --}}
+        <div class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-brand-600 via-brand-700 to-brand-900 px-4 py-10 sm:px-6">
+            {{-- Dekorasi latar --}}
             <div class="pointer-events-none absolute inset-0" aria-hidden="true">
                 <div class="absolute -left-32 -top-24 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
                 <div class="absolute -bottom-20 -right-20 h-80 w-80 rounded-full bg-black/10 blur-3xl"></div>
@@ -28,11 +28,16 @@
 
             <div class="relative z-10 w-full max-w-4xl">
                 <div class="flex flex-col overflow-hidden rounded-3xl bg-white shadow-2xl shadow-black/20 md:min-h-[32rem] md:flex-row">
-                    {{-- Panel ilustrasi --}}
-                    <div class="relative hidden min-h-[14rem] flex-1 flex-col justify-center overflow-hidden bg-gradient-to-br from-red-600 to-red-800 p-10 md:flex md:min-h-0">
+                    {{-- Panel ilustrasi + logo --}}
+                    <div class="relative hidden min-h-[14rem] flex-1 flex-col justify-center overflow-hidden bg-gradient-to-br from-brand-600 to-brand-800 p-10 md:flex md:min-h-0">
                         <div class="pointer-events-none absolute inset-0 opacity-30" aria-hidden="true">
                             <div class="absolute left-4 top-8 h-32 w-32 rounded-full border-2 border-white/40"></div>
                             <div class="absolute bottom-12 right-6 h-24 w-24 rounded-full bg-white/20"></div>
+                        </div>
+                        <div class="relative mb-6 flex justify-center">
+                            <span class="inline-flex rounded-2xl bg-white/95 p-3 shadow-lg shadow-black/10 ring-1 ring-white/40">
+                                <img src="{{ asset('logo.png') }}" alt="{{ config('app.name') }}" class="h-12 w-auto max-w-[200px] object-contain" />
+                            </span>
                         </div>
                         <div class="relative mx-auto w-full max-w-[240px] text-white">
                             <svg viewBox="0 0 320 280" class="h-auto w-full drop-shadow-lg" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -40,9 +45,9 @@
                                 <path d="M40 200 L280 200 L260 230 L60 230 Z" fill="rgba(255,255,255,0.2)"/>
                                 <path d="M80 200 L120 120 L200 120 L240 200 Z" fill="rgba(255,255,255,0.95)"/>
                                 <rect x="130" y="135" width="60" height="45" rx="4" fill="#1f2937" opacity="0.9"/>
-                                <rect x="138" y="142" width="18" height="12" rx="1" fill="#34d399"/>
+                                <rect x="138" y="142" width="18" height="12" rx="1" fill="#5AA6D6"/>
                                 <rect x="164" y="142" width="18" height="12" rx="1" fill="#fbbf24"/>
-                                <circle cx="160" cy="95" r="28" fill="#fecaca"/>
+                                <circle cx="160" cy="95" r="28" fill="#bfdbfe"/>
                                 <path d="M100 200 L120 140 L200 140 L220 200 Z" fill="rgba(255,255,255,0.35)"/>
                                 <circle cx="255" cy="72" r="22" fill="#fde047" opacity="0.95"/>
                                 <path d="M50 175 L90 155 L130 175 L90 185 Z" fill="rgba(255,255,255,0.25)"/>

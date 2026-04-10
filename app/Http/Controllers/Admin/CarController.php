@@ -27,7 +27,7 @@ class CarController extends Controller
             'price' => 'required|numeric|min:0',
             'capacity' => 'required|integer|min:1',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:10240',
         ]);
 
         if ($request->hasFile('image')) {
@@ -54,7 +54,7 @@ class CarController extends Controller
             'price' => 'required|numeric|min:0',
             'capacity' => 'required|integer|min:1',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:10240',
         ]);
 
         if ($request->hasFile('image')) {

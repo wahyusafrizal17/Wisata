@@ -2,14 +2,8 @@
     <x-auth-session-status class="mb-6" :status="session('status')" />
 
     <div class="mb-8">
-        <a href="{{ url('/') }}" class="inline-flex items-center gap-3">
-            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-red-600 to-red-800 shadow-md shadow-red-600/30">
-                <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                </svg>
-            </span>
-            <span class="text-xl font-bold tracking-tight text-gray-900">{{ strtoupper(config('app.name', 'Wisata')) }}</span>
+        <a href="{{ url('/') }}" class="inline-block">
+            <img src="{{ asset('logo.png') }}" alt="{{ config('app.name', 'SMJ Rent') }}" class="h-12 w-auto max-w-[240px] object-contain object-left" />
         </a>
         <p class="mt-2 text-sm text-gray-500">{{ __('Masuk ke akun Anda untuk melanjutkan.') }}</p>
     </div>
@@ -34,7 +28,7 @@
                     required
                     autofocus
                     autocomplete="username"
-                    class="block w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-11 pr-4 text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/30"
+                    class="block w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-11 pr-4 text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30"
                 />
             </div>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -50,7 +44,7 @@
                 </span>
                 <input
                     id="password"
-                    class="block w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-11 pr-12 text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/30"
+                    class="block w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-11 pr-12 text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30"
                     x-bind:type="show ? 'text' : 'password'"
                     name="password"
                     placeholder="{{ __('Minimal 6 karakter') }}"
@@ -80,13 +74,13 @@
                 <input
                     id="remember_me"
                     type="checkbox"
-                    class="rounded border-gray-300 text-red-600 shadow-sm focus:ring-red-500"
+                    class="rounded border-gray-300 text-brand-600 shadow-sm focus:ring-brand-500"
                     name="remember"
                 >
                 <span class="text-sm text-gray-600">{{ __('Ingat saya') }}</span>
             </label>
             @if (Route::has('password.request'))
-                <a class="text-sm font-medium text-red-600 underline decoration-red-600/30 underline-offset-2 transition hover:text-red-700" href="{{ route('password.request') }}">
+                <a class="text-sm font-medium text-brand-600 underline decoration-brand-600/30 underline-offset-2 transition hover:text-brand-700" href="{{ route('password.request') }}">
                     {{ __('Lupa kata sandi?') }}
                 </a>
             @endif
@@ -94,7 +88,7 @@
 
         <button
             type="submit"
-            class="flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-red-600 to-red-700 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-red-600/35 transition hover:from-red-700 hover:to-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            class="flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/35 transition hover:from-brand-700 hover:to-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
         >
             {{ __('Masuk') }}
         </button>

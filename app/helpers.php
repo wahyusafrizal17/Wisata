@@ -1,6 +1,8 @@
 <?php
 
 use App\Helpers\WhatsAppHelper;
+use App\Models\SiteSetting;
+use Illuminate\Support\Facades\Cache;
 
 if (!function_exists('whatsapp_booking_url')) {
     function whatsapp_booking_url(string $type, string $itemName, ?string $date = null): string
@@ -21,3 +23,26 @@ if (!function_exists('image_url')) {
         return asset($path);
     }
 }
+
+if (!function_exists('site_setting')) {
+    function site_setting(string $key, mixed $default = null): mixed
+    {
+        $cacheKey = 'site_setting:' . $key;
+
+        $value = Cache::remember($cacheKey, now()->addMinutes(10), function () use ($key) {
+            return SiteSetting::query()->where('key', $key)->value('value');
+        });
+
+        if ($value === null) {
+            return $default;
+        }
+
+        $decoded = json_decode($value, true);
+        if (json_last_error() === JSON_ERROR_NONE) {
+            return $decoded;
+        }
+
+        return $value;
+    }
+}
+

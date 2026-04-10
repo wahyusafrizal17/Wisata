@@ -11,12 +11,12 @@
 </head>
 <body class="font-sans antialiased bg-slate-100 text-slate-800">
     <div class="min-h-screen flex">
-        <aside class="w-64 bg-slate-900 text-white fixed h-full">
+        <aside class="w-64 bg-slate-900 text-white fixed inset-y-0 left-0 flex flex-col">
             <div class="p-6">
                 <a href="{{ route('admin.dashboard') }}" class="text-xl font-bold">SMJ <span class="text-brand-400">Rent</span></a>
                 <p class="text-slate-400 text-sm mt-1">Admin Panel</p>
             </div>
-            <nav class="mt-6">
+            <nav class="mt-6 flex-1 overflow-y-auto pb-6">
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-6 py-3 {{ request()->routeIs('admin.dashboard') ? 'bg-brand-600 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white' }}">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
                     Dashboard

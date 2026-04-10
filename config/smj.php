@@ -1,10 +1,11 @@
 <?php
 
 return [
-    'whatsapp' => env('WHATSAPP_NUMBER', '6281234567890'),
-    'email' => env('CONTACT_EMAIL', 'info@smjrent.com'),
+    'whatsapp' => env('WHATSAPP_NUMBER', '6282216922550'),
+    'email' => env('CONTACT_EMAIL', 'smjrenttravel@gmail.com'),
     'address' => env('CONTACT_ADDRESS', 'Jakarta, Indonesia'),
-    'instagram' => env('INSTAGRAM_URL', 'https://instagram.com/smjrent'),
-    'linktree' => env('LINKTREE_URL', 'https://linktr.ee/smjrent'),
+    'instagram' => env('INSTAGRAM_URL', ''),
+    'facebook' => env('FACEBOOK_URL', ''),
+    'linktree' => env('LINKTREE_URL', ''),
     'maps_embed' => env('GOOGLE_MAPS_EMBED', ''),
 ];

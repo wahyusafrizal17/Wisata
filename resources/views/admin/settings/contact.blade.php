@@ -32,6 +32,13 @@
                         <input type="url" name="instagram" value="{{ old('instagram', $settings['instagram'] ?? '') }}" class="w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500" placeholder="https://instagram.com/...">
                     </div>
                     <div>
+                        <label class="block font-medium mb-2">Facebook URL</label>
+                        <input type="url" name="facebook" value="{{ old('facebook', $settings['facebook'] ?? '') }}" class="w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500" placeholder="https://facebook.com/...">
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
                         <label class="block font-medium mb-2">Linktree URL</label>
                         <input type="url" name="linktree" value="{{ old('linktree', $settings['linktree'] ?? '') }}" class="w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500" placeholder="https://linktr.ee/...">
                     </div>

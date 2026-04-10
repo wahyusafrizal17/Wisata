@@ -10,6 +10,7 @@
             'email' => config('smj.email'),
             'address' => config('smj.address'),
             'instagram' => config('smj.instagram'),
+            'facebook' => config('smj.facebook'),
             'linktree' => config('smj.linktree'),
             'maps_embed' => config('smj.maps_embed'),
         ], site_setting('contact', [])))
@@ -39,6 +40,45 @@
                         <div>
                             <h3 class="font-semibold text-slate-900 mb-1">Email</h3>
                             <a href="mailto:{{ $contact['email'] ?? '' }}" class="text-brand-600 font-medium hover:underline">{{ $contact['email'] ?? '' }}</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 rounded-xl bg-brand-100 flex items-center justify-center shrink-0">
+                            <svg class="w-7 h-7 text-brand-600" fill="currentColor" viewBox="0 0 24 24"><path d="M22.676 0H1.326C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.326 24h11.494v-9.294H9.691V11.09h3.129V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24h-1.918c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.616h-3.12V24h6.116C23.407 24 24 23.407 24 22.674V1.326C24 .593 23.407 0 22.676 0z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-slate-900 mb-1">Facebook</h3>
+                            @if(!empty($contact['facebook']))
+                                <a href="{{ $contact['facebook'] }}" target="_blank" rel="noopener" class="text-brand-600 font-medium hover:underline">{{ $contact['facebook'] }}</a>
+                            @else
+                                <p class="text-slate-500">-</p>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="flex gap-6 p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 rounded-xl bg-brand-100 flex items-center justify-center shrink-0">
+                            <svg class="w-7 h-7 text-brand-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 7.2a4.8 4.8 0 100 9.6 4.8 4.8 0 000-9.6zm0 7.92a3.12 3.12 0 110-6.24 3.12 3.12 0 010 6.24zM17.76 6.96a1.12 1.12 0 11-2.24 0 1.12 1.12 0 012.24 0z"/><path d="M12 2.88c2.49 0 2.784.009 3.768.054.91.042 1.404.195 1.732.324.435.169.747.372 1.074.699.327.327.53.639.699 1.074.129.328.282.822.324 1.732.045.984.054 1.278.054 3.768s-.009 2.784-.054 3.768c-.042.91-.195 1.404-.324 1.732a2.9 2.9 0 01-.699 1.074 2.9 2.9 0 01-1.074.699c-.328.129-.822.282-1.732.324-.984.045-1.278.054-3.768.054s-2.784-.009-3.768-.054c-.91-.042-1.404-.195-1.732-.324a2.9 2.9 0 01-1.074-.699 2.9 2.9 0 01-.699-1.074c-.129-.328-.282-.822-.324-1.732C2.889 14.784 2.88 14.49 2.88 12s.009-2.784.054-3.768c.042-.91.195-1.404.324-1.732.169-.435.372-.747.699-1.074.327-.327.639-.53 1.074-.699.328-.129.822-.282 1.732-.324C9.216 2.889 9.51 2.88 12 2.88zm0-1.68c-2.532 0-2.85.011-3.846.057-1.02.047-1.717.208-2.326.445a4.58 4.58 0 00-1.656 1.078A4.58 4.58 0 002.094 4.436c-.237.609-.398 1.306-.445 2.326C1.611 7.758 1.6 8.076 1.6 10.608v2.784c0 2.532.011 2.85.057 3.846.047 1.02.208 1.717.445 2.326.25.648.59 1.198 1.078 1.656.458.488 1.008.828 1.656 1.078.609.237 1.306.398 2.326.445.996.046 1.314.057 3.846.057s2.85-.011 3.846-.057c1.02-.047 1.717-.208 2.326-.445a4.58 4.58 0 001.656-1.078 4.58 4.58 0 001.078-1.656c.237-.609.398-1.306.445-2.326.046-.996.057-1.314.057-3.846v-2.784c0-2.532-.011-2.85-.057-3.846-.047-1.02-.208-1.717-.445-2.326a4.58 4.58 0 00-1.078-1.656A4.58 4.58 0 0019.52 1.702c-.609-.237-1.306-.398-2.326-.445C14.85 1.211 14.532 1.2 12 1.2z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-slate-900 mb-1">Instagram</h3>
+                            @if(!empty($contact['instagram']))
+                                <a href="{{ $contact['instagram'] }}" target="_blank" rel="noopener" class="text-brand-600 font-medium hover:underline">{{ $contact['instagram'] }}</a>
+                            @else
+                                <p class="text-slate-500">-</p>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="flex gap-6 p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 rounded-xl bg-brand-100 flex items-center justify-center shrink-0">
+                            <svg class="w-7 h-7 text-brand-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1.5c-5.8 0-10.5 4.7-10.5 10.5S6.2 22.5 12 22.5 22.5 17.8 22.5 12 17.8 1.5 12 1.5zm0 19.2c-4.8 0-8.7-3.9-8.7-8.7S7.2 3.3 12 3.3s8.7 3.9 8.7 8.7-3.9 8.7-8.7 8.7z"/><path d="M10.2 7.8h3.6c1.5 0 2.7 1.2 2.7 2.7 0 1.5-1.2 2.7-2.7 2.7h-1.8v3.9c0 .5-.4.9-.9.9s-.9-.4-.9-.9V8.7c0-.5.4-.9.9-.9zm3.6 4.5c.5 0 .9-.4.9-.9s-.4-.9-.9-.9H12v1.8h1.8z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-slate-900 mb-1">Linktree</h3>
+                            @if(!empty($contact['linktree']))
+                                <a href="{{ $contact['linktree'] }}" target="_blank" rel="noopener" class="text-brand-600 font-medium hover:underline">{{ $contact['linktree'] }}</a>
+                            @else
+                                <p class="text-slate-500">-</p>
+                            @endif
                         </div>
                     </div>
                     <div class="flex gap-6 p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">

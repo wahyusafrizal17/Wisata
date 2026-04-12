@@ -33,7 +33,9 @@ if (! function_exists('whatsapp_contact_href')) {
     {
         $whatsapp = trim((string) $whatsapp);
         if ($whatsapp === '') {
-            return '#';
+            $digits = WhatsAppHelper::resolveWhatsAppDigits();
+
+            return $digits !== '' ? 'https://wa.me/'.$digits : '#';
         }
         if (preg_match('#^https?://#i', $whatsapp)) {
             return $whatsapp;
@@ -52,7 +54,12 @@ if (! function_exists('whatsapp_display_number')) {
     {
         $whatsapp = trim((string) $whatsapp);
         if ($whatsapp === '') {
-            return '';
+            $digits = WhatsAppHelper::resolveWhatsAppDigits();
+            if ($digits === '') {
+                return '';
+            }
+
+            return str_starts_with($digits, '62') ? '+'.$digits : $digits;
         }
         $digits = preg_replace('/[^0-9]/', '', $whatsapp);
         if ($digits === '') {

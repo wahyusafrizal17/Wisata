@@ -70,6 +70,22 @@ if (! function_exists('whatsapp_display_number')) {
     }
 }
 
+if (! function_exists('contact_instagram_url')) {
+    /**
+     * URL Instagram: field di Admin → Kontak, lalu config smj.instagram, lalu default.
+     */
+    function contact_instagram_url(): string
+    {
+        $contact = site_setting('contact', []);
+        $url = trim((string) ($contact['instagram'] ?? ''));
+        if ($url === '') {
+            $url = trim((string) config('smj.instagram'));
+        }
+
+        return $url !== '' ? $url : 'https://www.instagram.com/smjtourtravel';
+    }
+}
+
 if (! function_exists('site_setting')) {
     function site_setting(string $key, mixed $default = null): mixed
     {

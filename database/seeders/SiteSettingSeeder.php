@@ -37,7 +37,10 @@ class SiteSettingSeeder extends Seeder
                 'email' => 'admin@smjrent.com',
                 'address' => 'Alamat Anda di sini',
                 'instagram' => 'https://instagram.com/',
+                'facebook' => '',
+                'tiktok' => '',
                 'linktree' => 'https://linktr.ee/',
+                'tiket_url' => 'https://www.tiket.com/',
                 'maps_embed' => '',
             ],
         ];
@@ -50,4 +53,3 @@ class SiteSettingSeeder extends Seeder
         }
     }
 }
-

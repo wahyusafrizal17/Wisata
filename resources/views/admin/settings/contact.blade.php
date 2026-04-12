@@ -13,7 +13,8 @@
                 <div class="grid sm:grid-cols-2 gap-6">
                     <div>
                         <label class="block font-medium mb-2">WhatsApp</label>
-                        <input type="text" name="whatsapp" value="{{ old('whatsapp', $settings['whatsapp'] ?? '') }}" class="w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500" placeholder="6281234567890">
+                        <input type="text" name="whatsapp" value="{{ old('whatsapp', $settings['whatsapp'] ?? '') }}" class="w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500" placeholder="http://wa.me/6282216922550 atau 6282216922550">
+                        <p class="text-sm text-slate-500 mt-2">Bisa nomor (628&hellip;) atau link penuh <code class="text-xs bg-slate-100 px-1 rounded">wa.me</code>.</p>
                     </div>
                     <div>
                         <label class="block font-medium mb-2">Email</label>
@@ -29,15 +30,19 @@
                 <div class="grid sm:grid-cols-2 gap-6">
                     <div>
                         <label class="block font-medium mb-2">Instagram URL</label>
-                        <input type="url" name="instagram" value="{{ old('instagram', $settings['instagram'] ?? '') }}" class="w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500" placeholder="https://instagram.com/...">
+                        <input type="url" name="instagram" value="{{ old('instagram', $settings['instagram'] ?? '') }}" class="w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500" placeholder="https://www.instagram.com/...">
                     </div>
                     <div>
                         <label class="block font-medium mb-2">Facebook URL</label>
-                        <input type="url" name="facebook" value="{{ old('facebook', $settings['facebook'] ?? '') }}" class="w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500" placeholder="https://facebook.com/...">
+                        <input type="url" name="facebook" value="{{ old('facebook', $settings['facebook'] ?? '') }}" class="w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500" placeholder="https://www.facebook.com/...">
                     </div>
                 </div>
 
                 <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block font-medium mb-2">TikTok URL</label>
+                        <input type="url" name="tiktok" value="{{ old('tiktok', $settings['tiktok'] ?? '') }}" class="w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500" placeholder="https://www.tiktok.com/@...">
+                    </div>
                     <div>
                         <label class="block font-medium mb-2">Linktree URL</label>
                         <input type="url" name="linktree" value="{{ old('linktree', $settings['linktree'] ?? '') }}" class="w-full rounded-xl border-slate-200 focus:border-brand-500 focus:ring-brand-500" placeholder="https://linktr.ee/...">

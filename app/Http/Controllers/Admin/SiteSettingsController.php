@@ -60,12 +60,14 @@ class SiteSettingsController extends Controller
                 'button_text' => 'nullable|string|max:255',
             ]),
             'contact' => $request->validate([
-                'whatsapp' => 'nullable|string|max:255',
+                'whatsapp' => 'nullable|string|max:500',
                 'email' => 'nullable|email|max:255',
-                'address' => 'nullable|string|max:255',
-                'instagram' => 'nullable|url|max:255',
-                'linktree' => 'nullable|url|max:255',
-                'tiket_url' => 'nullable|url|max:255',
+                'address' => 'nullable|string|max:2000',
+                'instagram' => 'nullable|string|max:500',
+                'facebook' => 'nullable|string|max:500',
+                'tiktok' => 'nullable|string|max:500',
+                'linktree' => 'nullable|string|max:500',
+                'tiket_url' => 'nullable|string|max:500',
                 'maps_embed' => 'nullable|string',
             ]),
             default => abort(404),
@@ -76,9 +78,8 @@ class SiteSettingsController extends Controller
             ['value' => json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)]
         );
 
-        Cache::forget('site_setting:' . $page);
+        Cache::forget('site_setting:'.$page);
 
         return redirect()->route('admin.settings.edit', $page)->with('success', 'Konten berhasil diperbarui.');
     }
 }
-

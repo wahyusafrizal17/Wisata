@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title', 'Kontak - SMJ Rent')
-@section('description', 'Hubungi SMJ Rent untuk booking rental mobil dan paket wisata. WhatsApp, email, dan alamat kami.')
+@section('description', 'Hubungi SMJ Rent untuk booking rental mobil dan paket wisata. WhatsApp, email, dan media sosial kami.')
 
 @section('content')
     <section class="py-16 lg:py-24 bg-slate-50">
@@ -11,6 +11,7 @@
             'address' => config('smj.address'),
             'instagram' => config('smj.instagram'),
             'facebook' => config('smj.facebook'),
+            'tiktok' => config('smj.tiktok'),
             'linktree' => config('smj.linktree'),
             'maps_embed' => config('smj.maps_embed'),
         ], site_setting('contact', [])))
@@ -31,7 +32,13 @@
                         </div>
                         <div>
                             <h3 class="font-semibold text-slate-900 mb-1">WhatsApp</h3>
-                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact['whatsapp'] ?? '') }}" target="_blank" class="text-brand-600 font-medium hover:underline">{{ $contact['whatsapp'] ?? '' }}</a>
+                            <a href="{{ whatsapp_contact_href($contact['whatsapp'] ?? '') }}" target="_blank" rel="noopener" class="text-brand-600 font-medium hover:underline break-all">
+                                @if(!empty($contact['whatsapp']) && str_starts_with(trim($contact['whatsapp']), 'http'))
+                                    Buka WhatsApp
+                                @else
+                                    {{ $contact['whatsapp'] ?? '' }}
+                                @endif
+                            </a>
                         </div>
                     </div>
                     <div class="flex gap-6 p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
@@ -50,7 +57,7 @@
                         <div>
                             <h3 class="font-semibold text-slate-900 mb-1">Facebook</h3>
                             @if(!empty($contact['facebook']))
-                                <a href="{{ $contact['facebook'] }}" target="_blank" rel="noopener" class="text-brand-600 font-medium hover:underline">{{ $contact['facebook'] }}</a>
+                                <a href="{{ $contact['facebook'] }}" target="_blank" rel="noopener" class="text-brand-600 font-medium hover:underline break-all">{{ $contact['facebook'] }}</a>
                             @else
                                 <p class="text-slate-500">-</p>
                             @endif
@@ -63,7 +70,7 @@
                         <div>
                             <h3 class="font-semibold text-slate-900 mb-1">Instagram</h3>
                             @if(!empty($contact['instagram']))
-                                <a href="{{ $contact['instagram'] }}" target="_blank" rel="noopener" class="text-brand-600 font-medium hover:underline">{{ $contact['instagram'] }}</a>
+                                <a href="{{ $contact['instagram'] }}" target="_blank" rel="noopener" class="text-brand-600 font-medium hover:underline break-all">{{ $contact['instagram'] }}</a>
                             @else
                                 <p class="text-slate-500">-</p>
                             @endif
@@ -76,7 +83,7 @@
                         <div>
                             <h3 class="font-semibold text-slate-900 mb-1">Linktree</h3>
                             @if(!empty($contact['linktree']))
-                                <a href="{{ $contact['linktree'] }}" target="_blank" rel="noopener" class="text-brand-600 font-medium hover:underline">{{ $contact['linktree'] }}</a>
+                                <a href="{{ $contact['linktree'] }}" target="_blank" rel="noopener" class="text-brand-600 font-medium hover:underline break-all">{{ $contact['linktree'] }}</a>
                             @else
                                 <p class="text-slate-500">-</p>
                             @endif
@@ -84,11 +91,15 @@
                     </div>
                     <div class="flex gap-6 p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                         <div class="w-14 h-14 rounded-xl bg-brand-100 flex items-center justify-center shrink-0">
-                            <svg class="w-7 h-7 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <svg class="w-7 h-7 text-brand-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-slate-900 mb-1">Alamat</h3>
-                            <p class="text-slate-600">{{ $contact['address'] ?? '' }}</p>
+                            <h3 class="font-semibold text-slate-900 mb-1">TikTok</h3>
+                            @if(!empty($contact['tiktok']))
+                                <a href="{{ $contact['tiktok'] }}" target="_blank" rel="noopener" class="text-brand-600 font-medium hover:underline break-all">{{ $contact['tiktok'] }}</a>
+                            @else
+                                <p class="text-slate-500">-</p>
+                            @endif
                         </div>
                     </div>
 
@@ -103,7 +114,7 @@
                     </div>
                     @else
                     <div class="rounded-2xl overflow-hidden shadow-lg bg-slate-200 min-h-[520px] h-[60vh] max-h-[720px] flex items-center justify-center">
-                        <p class="text-slate-500">Tambahkan Google Maps embed di config/smj.php</p>
+                        <p class="text-slate-500">Tambahkan Google Maps embed di pengaturan admin Kontak.</p>
                     </div>
                     @endif
                 </div>

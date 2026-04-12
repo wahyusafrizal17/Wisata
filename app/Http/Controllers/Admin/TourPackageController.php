@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\TourPackage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class TourPackageController extends Controller
 {
@@ -34,10 +32,6 @@ class TourPackageController extends Controller
             'facilities' => 'nullable|string',
             'image' => 'nullable|image|max:10240',
         ]);
-
-        if (empty($validated['slug'])) {
-            $validated['slug'] = Str::slug($validated['title']);
-        }
 
         if ($request->hasFile('image')) {
             $filename = time() . '-' . $request->file('image')->getClientOriginalName();

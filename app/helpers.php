@@ -44,6 +44,25 @@ if (! function_exists('whatsapp_contact_href')) {
     }
 }
 
+if (! function_exists('whatsapp_display_number')) {
+    /**
+     * Human-readable phone digits for footer/UI (from number or wa.me URL).
+     */
+    function whatsapp_display_number(?string $whatsapp): string
+    {
+        $whatsapp = trim((string) $whatsapp);
+        if ($whatsapp === '') {
+            return '';
+        }
+        $digits = preg_replace('/[^0-9]/', '', $whatsapp);
+        if ($digits === '') {
+            return '';
+        }
+
+        return str_starts_with($digits, '62') ? '+'.$digits : $digits;
+    }
+}
+
 if (! function_exists('site_setting')) {
     function site_setting(string $key, mixed $default = null): mixed
     {
